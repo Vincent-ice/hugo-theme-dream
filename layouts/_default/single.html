@@ -38,8 +38,9 @@
   {{ end }}
     {{ if site.Params.showTableOfContents }}
     <div class="absolute right-0 lg:w-36 xl:w-48 hidden lg:block" :style="{ height }">
-      {{ .TableOfContents }}
-
+      <div class="toc-container">
+        {{ .TableOfContents }}
+      </div>
       <div class="dream-adsense px-5">
       {{ if fileExists "layouts/partials/adsense.html" }}
         {{ partialCached "adsense.html" . }}

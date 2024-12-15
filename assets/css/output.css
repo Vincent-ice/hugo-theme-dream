@@ -4182,3 +4182,15 @@ html {
   font-size: 1.125rem;
   line-height: 1.75rem;
 }
+
+.toc-container {
+  position: sticky;
+  top: 6rem; /* 调整为你的需求 */
+  max-height: 88vh; /* 调整为你的需求 */
+  overflow-y: scroll;
+}
+
+.toc-scroll {
+  overflow-y: auto;
+  max-height: 100%;
+}
