@@ -3617,6 +3617,7 @@ html {
     }
     .back {
       position: absolute;
+      display: block;
     }
   }
   .flipper {
@@ -3640,6 +3641,7 @@ html {
   }
   .back {
     transform: rotateY(180deg);
+    display: none;
   }
 }
 

@@ -27,6 +27,7 @@
 
     .back {
       position: absolute;
+      display: block;
     }
   }
 
@@ -54,6 +55,7 @@
 
   .back {
     transform: rotateY(180deg);
+    display: none;
   }
 }
 
