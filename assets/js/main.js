@@ -97,3 +97,35 @@ function smoothScrollTop(){
         }
     });
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+  const footnoteLinks = document.querySelectorAll('.footnote-ref');
+
+  footnoteLinks.forEach(link => {
+    link.addEventListener('click', function(event) {
+      event.preventDefault();
+      const targetId = this.getAttribute('href').substring(1);
+      const targetElement = document.getElementById(targetId);
+
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    });
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  const footnotes = document.querySelectorAll('.footnote-backref');
+
+  footnotes.forEach(footnote => {
+    footnote.addEventListener('click', function(event) {
+      event.preventDefault();
+      const targetId = this.getAttribute('href').substring(1);
+      const targetElement = document.getElementById(targetId);
+
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    });
+  });
+});

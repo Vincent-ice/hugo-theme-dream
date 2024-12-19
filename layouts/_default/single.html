@@ -68,7 +68,22 @@
       <img src="{{ .Params.Cover }}" alt="{{ .Title }}" />
       {{ end }}
 
-      {{ .Content | emojify }}
+      {{ .Content | emojify | safeHTML }}
+
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          const footnotes = document.querySelectorAll('.footnote-ref');
+          footnotes.forEach(fn => {
+            const noteId = fn.getAttribute('href').substring(1);
+            const note = document.getElementById(noteId);
+            if (note) {
+              const content = note.innerHTML;
+              fn.innerHTML += `<span class="footnote-content">${content}</span>`;
+              fn.classList.add('footnote');
+            }
+          });
+        });
+      </script>
 
       {{ if site.Params.showPrevNextPost }}
       <div class="divider"></div>
