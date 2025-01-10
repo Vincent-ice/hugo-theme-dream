@@ -2,7 +2,7 @@ baseurl = "https://example.com"
 defaultContentLanguage = "en"
 languageCode = "en"
 title = "Hugo Theme Dream"
-theme = "hugo-theme-dream"
+theme = "dream"
 
 # [services]
 # [services.disqus]
@@ -54,6 +54,7 @@ siteStartYear = 2016
 # noDefaultSummaryCover = true
 # showTableOfContents = true
 # showSummaryCoverInPost = true
+# imageZoomableInPost = true
 # showPrevNextPost = true
 # reorderShares = ["x", "facebook", "whatsapp"]
 
