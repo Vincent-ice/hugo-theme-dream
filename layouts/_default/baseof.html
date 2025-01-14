@@ -74,6 +74,8 @@
 
     <script type="module" src="https://unpkg.com/ionicons@7.4.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.4.0/dist/ionicons/ionicons.js"></script>
+    {{ if eq .Kind "page" }}
     <button class="btn" onclick="smoothScrollTop()" id="goTopBtn" title="Go to top">TOP</button>
+    {{ end }}
   </body>
 </html>
