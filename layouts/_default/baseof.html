@@ -60,7 +60,7 @@
       </script>
     {{ end }}
 
-    {{ if .Store.Get "hasMathjax" }}
+    {{ if .Param "math" }}
       {{ partialCached "mathjax.html" . }}
     {{ end }}
 
