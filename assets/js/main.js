@@ -122,3 +122,53 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+  const tocLinks = document.querySelectorAll("#TableOfContents a");
+  const sections = Array.from(tocLinks).map(link => {
+    const href = link.getAttribute("href");
+    if (href.startsWith("#")) {
+      return document.getElementById(href.slice(1));
+    }
+    return null;
+  }).filter(section => section !== null);
+  const offset = 100;
+
+  function onScroll() {
+    const scrollPosition = document.documentElement.scrollTop || document.body.scrollTop;
+
+    sections.forEach((section, index) => {
+      if (section.offsetTop - offset <= scrollPosition && (section.offsetTop + section.offsetHeight) > scrollPosition) {
+        tocLinks.forEach(link => link.classList.remove("active"));
+        tocLinks[index].classList.add("active");
+
+        const tocContainer = document.querySelector("#TableOfContents");
+        const activeLink = tocLinks[index];
+        const activeLinkRect = activeLink.getBoundingClientRect();
+        const tocContainerRect = tocContainer.getBoundingClientRect();
+        const activeLinkOffsetTop = activeLinkRect.top - tocContainerRect.top + tocContainer.scrollTop + 100;
+        tocContainer.scrollTo({
+          top: activeLinkOffsetTop,
+          behavior: "smooth"
+        });
+      }
+    });
+  }
+
+  document.addEventListener("scroll", onScroll);
+
+ tocLinks.forEach(link => {
+    link.addEventListener("click", function(event) {
+      event.preventDefault(); // 阻止默认的跳转行为
+      const targetId = this.getAttribute("href");
+      const targetElement = document.querySelector(targetId);
+
+      // 平滑滚动到目标元素
+      window.scrollTo({
+        top: targetElement.offsetTop,
+        behavior: "smooth"
+      });
+      setTimeout(onScroll, 10);
+    });
+  });
+});

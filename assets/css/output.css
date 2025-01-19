@@ -4214,6 +4214,11 @@ html {
   max-height: 100%;
 }
 
+#TableOfContents a.active {
+  font-weight: bold;
+  color: #007bff;
+}
+
 #goTopBtn {
   display: none; /* Hidden by default */
   position: fixed; /* Fixed/sticky position */
