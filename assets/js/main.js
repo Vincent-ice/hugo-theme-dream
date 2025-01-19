@@ -122,3 +122,21 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+  const tocLinks = document.querySelectorAll("#TableOfContents a");
+  const sections = Array.from(tocLinks).map(link => document.querySelector(link.getAttribute("href")));
+
+  function onScroll() {
+    const scrollPosition = document.documentElement.scrollTop || document.body.scrollTop;
+
+    sections.forEach((section, index) => {
+      if (section.offsetTop <= scrollPosition && (section.offsetTop + section.offsetHeight) > scrollPosition) {
+        tocLinks.forEach(link => link.classList.remove("active"));
+        tocLinks[index].classList.add("active");
+      }
+    });
+  }
+
+  document.addEventListener("scroll", onScroll);
+});
