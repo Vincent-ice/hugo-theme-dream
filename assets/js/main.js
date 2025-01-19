@@ -146,7 +146,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const activeLink = tocLinks[index];
         const activeLinkRect = activeLink.getBoundingClientRect();
         const tocContainerRect = tocContainer.getBoundingClientRect();
-        const activeLinkOffsetTop = activeLinkRect.top - tocContainerRect.top + tocContainer.scrollTop + 100;
+        const activeLinkOffsetTop = activeLinkRect.top - tocContainerRect.top + tocContainer.scrollTop - 50;
         tocContainer.scrollTo({
           top: activeLinkOffsetTop,
           behavior: "smooth"
