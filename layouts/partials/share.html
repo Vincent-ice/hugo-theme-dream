@@ -1,19 +1,20 @@
 <div class="flex items-center gap-2">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <!-- slot: post-share-left.html -->
   {{ if fileExists "layouts/partials/post-share-left.html" }}
     {{ partial "post-share-left.html" . }}
   {{ end }}
 
-  {{ $shares := slice "qq" "qzone" "wechat" }}
+  {{ $shares := slice "qq" "weixin" "weibo" }}
   {{ $shareTitles := dict
     "qq" "QQ"
-    "qzone" "Qzone"
-    "wechat" "WeChat"
+    "weixin" "WeChat"
+    "weibo" "weibo"
   }}
   {{ $shareLinks := dict
     "qq" (print "http://connect.qq.com/widget/shareqq/index.html?url=" .Permalink "&title=" .Title)
-    "qzone" (print "http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=" .Permalink "&title=" .Title)
-    "wechat" (print "weixin://dl/share?text=" .Title " " .Permalink)
+    "weibo" (print "http://service.weibo.com/share/share.php?url=" .Permalink "&title=" .Title)
+    "weixin" (print "weixin://dl/share?text=" .Title " " .Permalink)
   }}
   {{ if site.Params.reorderShares }}
     {{ $shares = site.Params.reorderShares }}
@@ -22,7 +23,7 @@
     <a class="group inline-flex items-center p-2 rounded-full cursor-pointer hover:bg-primary"
       href="{{ index $shareLinks . }}" target="_blank" rel="noopener noreferrer"
       title="Share on {{ index $shareTitles . }}">
-      <ion-icon class="group-hover:text-primary-content" name="logo-{{ . }}"></ion-icon>
+      <i class="fab fa-{{ . }}"></i>
     </a>
   {{ end }}
 
