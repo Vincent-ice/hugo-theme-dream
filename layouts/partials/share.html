@@ -4,16 +4,16 @@
     {{ partial "post-share-left.html" . }}
   {{ end }}
 
-  {{ $shares := slice "x" "facebook" "whatsapp" }}
+  {{ $shares := slice "qq" "qzone" "wechat" }}
   {{ $shareTitles := dict
-    "x" "X"
-    "facebook" "Facebook"
-    "whatsapp" "WhatsApp"
+    "qq" "QQ"
+    "qzone" "Qzone"
+    "wechat" "WeChat"
   }}
   {{ $shareLinks := dict
-    "x" (print "https://x.com/intent/post?text=" .Title "&url=" .Permalink)
-    "facebook" (print "https://facebook.com/sharer/sharer.php?u=" .Permalink)
-    "whatsapp" (print "https://wa.me/?text=" .Title " " .Permalink)
+    "qq" (print "http://connect.qq.com/widget/shareqq/index.html?url=" .Permalink "&title=" .Title)
+    "qzone" (print "http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=" .Permalink "&title=" .Title)
+    "wechat" (print "weixin://dl/share?text=" .Title " " .Permalink)
   }}
   {{ if site.Params.reorderShares }}
     {{ $shares = site.Params.reorderShares }}
