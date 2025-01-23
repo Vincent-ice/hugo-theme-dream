@@ -8,6 +8,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ block "title" . -}} {{ T "home" }} {{- end }} | {{ site.Title }}</title>
 
+    <script>
+      var OriginTitile = document.title;
+      var titleTime;
+      document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '快来学！' + OriginTitile;
+            clearTimeout(titleTime);
+        }
+        else {
+            document.title = '(*´∇｀*) 接着学习吧~ ' + OriginTitile;
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            }, 2000);
+        }
+      });
+    </script>
+
     {{ partial "head.html" . }}
 
     {{ block "css" . }} {{ end }}
