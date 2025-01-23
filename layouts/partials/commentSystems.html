@@ -58,6 +58,12 @@
 {{ if site.Params.twikoo }}
 <article>
   <div id="tcomment"></div>
+    <style>
+    .twikoo :where(img) {
+      margin-top: 0em;
+      margin-bottom: 0em;
+    }
+    </style>
     <script>
     twikoo.init({
       envId: {{ site.Params.envId }}, // 腾讯云环境填 envId；Vercel 环境填地址（https://xxx.vercel.app）
