@@ -3872,6 +3872,14 @@ html {
   padding-bottom: 0.5rem;
 }
 
+#TableOfContents ul ul ul {
+  display: none;
+}
+
+#TableOfContents ul ul li > a.active + ul {
+  display: block;
+}
+
 .dream-alert {
   > .heading {
     display: flex;
@@ -4147,6 +4155,8 @@ html {
 
   .lg\:flex {
     display: flex;
+    align-content: flex-start;
+    flex-wrap: wrap;
   }
 
   .lg\:grid {

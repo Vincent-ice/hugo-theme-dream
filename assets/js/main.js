@@ -142,6 +142,16 @@ document.addEventListener("DOMContentLoaded", function() {
         tocLinks.forEach(link => link.classList.remove("active"));
         tocLinks[index].classList.add("active");
 
+        // 添加 active 类到所有父级目录项
+        let parentLi = tocLinks[index].closest('li');
+        while (parentLi) {
+          const parentLink = parentLi.querySelector('a');
+          if (parentLink) {
+            parentLink.classList.add('active');
+          }
+          parentLi = parentLi.parentElement.closest('li');
+        }
+
         const tocContainer = document.querySelector("#TableOfContents");
         const activeLink = tocLinks[index];
         const activeLinkRect = activeLink.getBoundingClientRect();
@@ -157,7 +167,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   document.addEventListener("scroll", onScroll);
 
- tocLinks.forEach(link => {
+  tocLinks.forEach(link => {
     link.addEventListener("click", function(event) {
       event.preventDefault(); // 阻止默认的跳转行为
       const targetId = this.getAttribute("href");
@@ -169,6 +179,18 @@ document.addEventListener("DOMContentLoaded", function() {
         behavior: "smooth"
       });
       setTimeout(onScroll, 10);
+
+      // 添加 active 类到所有父级目录项
+      tocLinks.forEach(link => link.classList.remove("active"));
+      this.classList.add("active");
+      let parentLi = this.closest('li');
+      while (parentLi) {
+        const parentLink = parentLi.querySelector('a');
+        if (parentLink) {
+          parentLink.classList.add('active');
+        }
+        parentLi = parentLi.parentElement.closest('li');
+      }
     });
   });
 });
