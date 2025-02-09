@@ -91,6 +91,13 @@ function smoothScrollTop(){
     });
 }
 
+function smoothScrollToComments(){
+    const commentsSection = document.getElementById("comments");
+    if (commentsSection) {
+        commentsSection.scrollIntoView({ behavior: 'smooth' });
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   const footnoteLinks = document.querySelectorAll('.footnote-ref');
 
