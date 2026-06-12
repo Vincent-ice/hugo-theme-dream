@@ -178,14 +178,32 @@ document.addEventListener("DOMContentLoaded", function() {
     link.addEventListener("click", function(event) {
       event.preventDefault(); // 阻止默认的跳转行为
       const targetId = this.getAttribute("href");
-      const targetElement = document.querySelector(targetId);
+      const targetElement = document.getElementById(targetId.slice(1));
 
-      // 平滑滚动到目标元素
-      window.scrollTo({
-        top: targetElement.offsetTop,
-        behavior: "smooth"
-      });
-      setTimeout(onScroll, 10);
+      // 慢快慢平滑滚动到目标元素
+      const targetTop = targetElement.offsetTop;
+      const startTop = window.pageYOffset;
+      const distance = targetTop - startTop;
+      const duration = Math.min(800, Math.max(300, Math.abs(distance) * 0.5));
+      let startTime = null;
+
+      function easeInOutCubic(t) {
+        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      }
+
+      function animateScroll(timestamp) {
+        if (!startTime) startTime = timestamp;
+        const elapsed = timestamp - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        window.scrollTo(0, startTop + distance * easeInOutCubic(progress));
+        if (progress < 1) {
+          requestAnimationFrame(animateScroll);
+        } else {
+          onScroll();
+        }
+      }
+
+      requestAnimationFrame(animateScroll);
 
       // 添加 active 类到所有父级目录项
       tocLinks.forEach(link => link.classList.remove("active"));
